@@ -1,0 +1,35 @@
+CREATE DATABASE QLSanpham;
+GO
+
+USE QLSanpham;
+GO
+
+CREATE TABLE LoaiSP (
+    MaLoai CHAR(2) PRIMARY KEY,
+    TenLoai NVARCHAR(30) NOT NULL
+);
+GO
+
+CREATE TABLE Sanpham (
+    MaSP CHAR(6) PRIMARY KEY,
+    TenSP NVARCHAR(30) NOT NULL,
+    NgayNhap DATETIME NOT NULL,
+    MaLoai CHAR(2) NOT NULL,
+    FOREIGN KEY (MaLoai) REFERENCES LoaiSP(MaLoai)
+);
+GO
+
+INSERT INTO LoaiSP (MaLoai, TenLoai)
+VALUES 
+    ('L1', N'Hàng điện tử'),
+    ('L2', N'Hàng tiêu dùng');
+GO
+
+INSERT INTO Sanpham (MaSP, TenSP, NgayNhap, MaLoai)
+VALUES
+    ('SP001', N'Tivi Samsung', '2024-12-01', 'L1'),
+    ('SP002', N'Tủ lạnh LG', '2024-12-10', 'L1'),
+    ('SP003', N'Nước giải khát', '2024-12-15', 'L2');
+GO
+
+select * from Sanpham
